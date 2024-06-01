@@ -52,7 +52,7 @@ poetry --version
 туда помещаем значение пути до **poetry**
 
 ```yaml
-C:\Users\Alti\AppData\Roaming\Python\Scripts
+C:\Users\User\AppData\Roaming\Python\Scripts
 ```
 
 Теперь можно проверить poetry командой в терминал gitbush для проекта, например:
@@ -75,6 +75,8 @@ poetry config virtualenvs.in-project true
 ## Использование poetry
 
 ### Создание нового проекта
+
+- Вниманией! Чтобы установился нужной версии python, нужно предварительно прописать ```poetry env use python3.11```
 
 для того чтобы создать проект с нуля, необходимо прописать команду:
 
@@ -103,6 +105,8 @@ my-app/
 ### Инициализация существующего проекта
 
 Если pyproject.toml уже создан и в нем прописан конфиг на зависимости и прочее:
+
+- Вниманией! Чтобы установился нужной версии python, нужно предварительно прописать ```poetry env use python3.11```
 
 ```yaml
 poetry install
