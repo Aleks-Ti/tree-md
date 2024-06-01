@@ -30,7 +30,7 @@
 в windows 11 PowerShell прописать команду для установки:
 
 ```rust
-(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
 ```
 
 Теперь можно проверить poetry командой:
