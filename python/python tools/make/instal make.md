@@ -23,6 +23,11 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 Проверить командой `choco` если все ок, будет отзыв.
 
+```shell
+Chocolatey v1.2.1
+Please run 'choco -?' or 'choco <command> -?' for help menu.
+```
+
 - Теперь можно поставить `make`
 
 ```bash
