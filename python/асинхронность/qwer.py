@@ -1,10 +1,12 @@
 import multiprocessing
 
+
 def calculate(num):
     # Имитация вычислений
     result = num ** 2
     print(f"Процесс {multiprocessing.current_process().name} вычислил {num}^2 = {result}")
     return result
+
 
 if __name__ == '__main__':
     # Создаем пул процессов
