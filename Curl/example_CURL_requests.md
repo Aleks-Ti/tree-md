@@ -26,7 +26,7 @@
 
 ### Типичный POST запрос json с Body
 
-```bash
+```rust
 curl -X 'POST' \
   'http://127.0.0.1:8000/hello' \
   -H 'accept: application/json' \
@@ -42,7 +42,7 @@ curl -X 'POST' \
 
 ### GET запрос с query параметрами
 
-```bash
+```rust
 curl -X 'GET' \
   'http://127.0.0.1:8000/users?name=Ivan&age=18&is_staff=false' \
   -H 'accept: application/json'
@@ -50,7 +50,7 @@ curl -X 'GET' \
 
 ### GET запрос с использованием path параметров
 
-```bash
+```rust
 curl -X 'GET' \
   'http://127.0.0.1:8000/users/123/profile' \
   -H 'accept: application/json'
@@ -62,7 +62,7 @@ curl -X 'GET' \
 - Поле avatar (одна картинка).
 - Поле images (несколько картинок).
 
-```bash
+```rust
 curl -X 'POST' \
   'http://127.0.0.1:8000/upload' \
   -H 'accept: application/json' \
@@ -85,7 +85,7 @@ curl -X 'POST' \
 
 Cохранить ответ запроса в файл, можно использовать флаг `-o`:
 
-```bash
+```rust
 curl -X 'GET' \
   'http://127.0.0.1:8000/users/123/profile' \
   -o response.json
@@ -96,7 +96,7 @@ curl -X 'GET' \
 Просмотр только заголовков ответа:
 Если вам нужно увидеть только заголовки ответа (например, чтобы проверить статус кода или cookies), используйте флаг -I:
 
-```bash
+```rust
 curl -I 'http://127.0.0.1:8000/users/123/profile'
 ```
 
@@ -106,7 +106,7 @@ curl -I 'http://127.0.0.1:8000/users/123/profile'
 
 - Сохранение cookies в файл:
 
-```bash
+```rust
 curl -c cookies.txt -X 'POST' \
   'http://127.0.0.1:8000/login' \
   -H 'Content-Type: application/json' \
@@ -120,7 +120,7 @@ curl -c cookies.txt -X 'POST' \
 
 - Использование сохранённых cookies:
 
-```bash
+```rust
 curl -b cookies.txt -X 'GET' \
   'http://127.0.0.1:8000/protected-resource'
 ```
@@ -131,13 +131,13 @@ curl -b cookies.txt -X 'GET' \
 
 Чтобы лучше понимать, что происходит во время запроса, можно включить детализированные логи с помощью флага `-v` (verbose). Это поможет отслеживать шаги запроса, видеть все заголовки, устанавливаемые `curl`, и ответы сервера.
 
-```bash
+```rust
 curl -v 'http://127.0.0.1:8000/users/123/profile'
 ```
 
 Если нужен ещё более детализированный лог, можно использовать флаг `--trace`:
 
-```bash
+```rust
 curl --trace trace.log 'http://127.0.0.1:8000/users/123/profile'
 ```
 
@@ -149,7 +149,7 @@ curl --trace trace.log 'http://127.0.0.1:8000/users/123/profile'
 
 - JWT токен:
 
-```bash
+```rust
 curl -X 'GET' \
   'http://127.0.0.1:8000/protected-resource' \
   -H 'Authorization: Bearer YOUR_TOKEN'
@@ -158,7 +158,7 @@ curl -X 'GET' \
 - Базовая авторизация:
 - - Для передачи имени пользователя и пароля можно использовать флаг -u:
 
-```bash
+```rust
 curl -u username:password \
   'http://127.0.0.1:8000/protected-resource'
 ```
@@ -167,7 +167,7 @@ curl -u username:password \
 
 Чтобы понять, сколько времени занимает выполнение запроса, можно использовать флаг `-w` (`write-out`). Например, выводим время ответа:
 
-```bash
+```rust
 curl -w "Time: %{time_total}\n" -o /dev/null -s \
   'http://127.0.0.1:8000/users/123/profile'
 ```
@@ -180,7 +180,7 @@ curl -w "Time: %{time_total}\n" -o /dev/null -s \
 
 Если вам нужно отправить запрос через прокси-сервер, используйте флаг -x:
 
-```bash
+```rust
 curl -x http://proxy-server:port \
   'http://127.0.0.1:8000/users/123/profile'
 ```
@@ -189,7 +189,7 @@ curl -x http://proxy-server:port \
 
 Если вы загружаете большие файлы и хотите видеть прогресс, используйте команду -O для сохранения файлов с их оригинальными именами и отображения прогресса:
 
-```bash
+```rust
 curl -O http://example.com/largefile.zip
 ```
 
@@ -197,7 +197,7 @@ curl -O http://example.com/largefile.zip
 
 Если сервер временно не отвечает, можно настроить повторение запроса:
 
-```bash
+```rust
 curl --retry 5 'http://127.0.0.1:8000/resource'
 ```
 
@@ -207,7 +207,7 @@ curl --retry 5 'http://127.0.0.1:8000/resource'
 
 Если сервер возвращает `HTTP редиректы`, можно автоматически следовать за ними с помощью флага `-L`:
 
-```bash
+```rust
 curl -L 'http://example.com/old-url'
 ```
 
@@ -215,7 +215,7 @@ curl -L 'http://example.com/old-url'
 
 Для отправки нескольких параллельных запросов можно использовать xargs:
 
-```bash
+```rust
 echo 'http://example.com/resource1' 'http://example.com/resource2' | xargs -n 1 -P 2 curl -O
 ```
 
