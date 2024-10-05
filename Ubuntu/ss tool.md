@@ -1,5 +1,7 @@
 # ss tool
 
+Хороший гайд по утилите - https://losst.pro/monitoring-setevyh-podklyuchenij-v-linux
+
 Глянуть все занятые порты:
 
 ```bash
