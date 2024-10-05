@@ -94,7 +94,7 @@ def get_variable_env(var: str):
 if __name__ == "__main__":
     logger.info("Старт сценария >> созданиe дампа postgres.")
 
-    PATH_TO_ENV = "/root/tg-bot-cs_fk/.env"
+    PATH_TO_ENV = "/path/to/env/file/.env"
     load_env_file(PATH_TO_ENV)
 
     CONTAINER_NAME = get_variable_env("CONTAINER_NAME")
