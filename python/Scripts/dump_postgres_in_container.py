@@ -1,3 +1,31 @@
+"""
+Скрипт для создания дампа базы данных postgres в контейнере через docker.
+
+В скрипт нужно обязательно добавить для константы PATH_TO_ENV ваш актуальный value с path до файла .env:
+
+    if __name__ == "__main__":
+        ...
+        PATH_TO_ENV="path/to/env/file/.env"
+        ...
+
+
+Так же нужно будет наполнить .env соответствующими данными и указать их название для констант:
+
+    CONTAINER_NAME = get_variable_env("YOUR_CONTAINER_NAME")  >> в файле .env должно быть так >> YOUR_CONTAINER_NAME=my_name_container_db_postgres
+    PG_USER = get_variable_env("YOUR_PG_USERNAME")  >> в файле .env должно быть так >> YOUR_PG_USERNAME=my_value_for_pg_uername
+    PG_DB = get_variable_env("YOUR_PG_DB_NAME")  >> в файле .env должно быть так >> YOUR_PG_DB_NAME=my_value_pg_db_name
+    DIR_DUMPS = get_variable_env("YOUR_DIR_DUMPS")  >> в файле .env должно быть так >> YOUR_DIR_DUMPS=/my/path/to/dir/dumps/ >> куда будут складываться дампы
+
+
+Пример использования скрипта в системе Ubuntu через crontab:
+
+bash$ crontab -e
+    ...
+    0 2 * * * python3 /user/backups/script_dumps.py >> /user/backups/cron.log 2>&1
+    ...
+    каждый день в 2 ночи + запись в файл cron.log вывода скрипта.
+"""  # noqa
+
 import logging
 import os
 import subprocess
@@ -62,12 +90,18 @@ def create_dumps(path_dir_dumps: str) -> None:
 
     dump_name = f'dump_{datetime.now().strftime("%d-%m-%Y_%H:%M:%S")}.sql'
 
-    runner_command(f"docker exec {CONTAINER_NAME} pg_dump -U {PG_USER} -d {PG_DB} > {str(os.path.join(path_dir_dumps, dump_name))}")
+    runner_command(
+        f"docker exec {CONTAINER_NAME} pg_dump -U {PG_USER} -d {PG_DB} > {str(os.path.join(path_dir_dumps, dump_name))}"
+    )
     logger.info(f"Успешно создан новый дамп: {dump_name}")
 
 
 def control_count_dumps(path_dir_dumps: str, num_to_delete=5) -> None:
-    files = [f for f in os.listdir(path_dir_dumps) if os.path.isfile(os.path.join(path_dir_dumps, f))]
+    files = [
+        f
+        for f in os.listdir(path_dir_dumps)
+        if os.path.isfile(os.path.join(path_dir_dumps, f))
+    ]
     if len(files) <= num_to_delete:
         return None
 
@@ -97,10 +131,10 @@ if __name__ == "__main__":
     PATH_TO_ENV = "/path/to/env/file/.env"
     load_env_file(PATH_TO_ENV)
 
-    CONTAINER_NAME = get_variable_env("CONTAINER_NAME")
-    PG_USER = get_variable_env("PG_USERNAME")
-    PG_DB = get_variable_env("PG_DB_NAME")
-    DIR_DUMPS = get_variable_env("DIR_DUMPS")
+    CONTAINER_NAME = get_variable_env("YOUR_CONTAINER_NAME")
+    PG_USER = get_variable_env("YOUR_PG_USERNAME")
+    PG_DB = get_variable_env("YOUR_PG_DB_NAME")
+    DIR_DUMPS = get_variable_env("YOUR_DIR_DUMPS")
 
     try:
         main()
