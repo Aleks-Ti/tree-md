@@ -29,6 +29,8 @@ bash$ crontab -e
 import logging
 import os
 import subprocess
+
+from pathlib import Path
 from datetime import datetime
 
 
@@ -56,7 +58,7 @@ def runner_command(command):
 
 
 def load_env_file(env_path):
-    """Загрузка переменных из .env файла и добавление их в окружение."""
+    """Загрузка переменных из .env файла и добавление их в окружение скрипта."""
 
     if not os.path.exists(env_path):
         raise FileNotFoundError(
@@ -82,33 +84,30 @@ def load_env_file(env_path):
 def dir_exists_or_create(path):
     """Создает конечную папку под дампы, если её ещё не существует."""
 
-    os.makedirs(path, exist_ok=True)
+    Path(path).mkdir(parents=True, exist_ok=True)
 
 
 def create_dumps(path_dir_dumps: str) -> None:
-    """Создание дампа."""
+    """Создание дампа средствами docker и pg_dump."""
 
-    dump_name = f'dump_{datetime.now().strftime("%d-%m-%Y_%H:%M:%S")}.sql'
-
+    dump_name = f'dump_{datetime.now().strftime("%d-%m-%Y_%H-%M-%S")}.sql'
+    dump_path = Path(path_dir_dumps) / dump_name
     runner_command(
-        f"docker exec {CONTAINER_NAME} pg_dump -U {PG_USER} -d {PG_DB} > {str(os.path.join(path_dir_dumps, dump_name))}"
+        ["docker", "exec", CONTAINER_NAME, "pg_dump", "-U", PG_USER, "-d", PG_DB, "f", dump_path]
     )
     logger.info(f"Успешно создан новый дамп: {dump_name}")
 
 
 def control_count_dumps(path_dir_dumps: str, num_to_delete=5) -> None:
-    files = [
-        f
-        for f in os.listdir(path_dir_dumps)
-        if os.path.isfile(os.path.join(path_dir_dumps, f))
-    ]
+    files = sorted(
+        Path(path_dir_dumps).glob("*.sql"),
+        key=lambda x: x.stat().st_ctime
+    )
     if len(files) <= num_to_delete:
         return None
 
-    files.sort(key=lambda x: os.path.getctime(os.path.join(path_dir_dumps, x)))
     for file in files[:-num_to_delete]:
-        file_path = os.path.join(path_dir_dumps, file)
-        os.remove(file_path)
+        file.unlink()
         logger.info(f"Удален старый дамп >> файл: {file}")
 
 
@@ -131,10 +130,10 @@ if __name__ == "__main__":
     PATH_TO_ENV = "/path/to/env/file/.env"
     load_env_file(PATH_TO_ENV)
 
-    CONTAINER_NAME = get_variable_env("YOUR_CONTAINER_NAME")
-    PG_USER = get_variable_env("YOUR_PG_USERNAME")
-    PG_DB = get_variable_env("YOUR_PG_DB_NAME")
-    DIR_DUMPS = get_variable_env("YOUR_DIR_DUMPS")
+    CONTAINER_NAME = get_variable_env("YOUR_CONTAINER_NAME")  # Имя контейнера с Postgres
+    PG_USER = get_variable_env("YOUR_PG_USERNAME")            # Имя пользователя Postgres
+    PG_DB = get_variable_env("YOUR_PG_DB_NAME")               # Имя базы данных Postgres
+    DIR_DUMPS = get_variable_env("YOUR_DIR_DUMPS")            # Путь для хранения дампов
 
     try:
         main()
