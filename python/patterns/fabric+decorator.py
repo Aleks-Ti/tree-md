@@ -1,3 +1,5 @@
+"""Фабрика зависимостей для FastApi приложения."""
+
 from abc import abstractmethod
 from typing import Any
 
@@ -17,23 +19,41 @@ def main_metrics_service():
     ...
 
 
-class DependsFactory:
-    authorised_mode: set | None = None
-    additional_services: list = []
+class UserRepository:
+    """from src.user.repository import UserRepository"""
+    ...
 
-    def __init__(self, modes: list[str] | None = None):
-        self.modes: list | None = modes
+
+class DependsFactory:
+    """
+    Обязательный параметр authorised_mode, предупреждает ошибки программиста, опечатки и прочее, \
+    чтобы передаваемые флаги были действительными.
+    Нужно заранее объявлять, какие флаги существуют для вашей фабрики.
+    Пример:
+    ```
+    def __init__(self, modes: tuple):
+        self.authorised_mode = {"metrics"}
+        super().__init__(self.authorised_mode, modes)
+    ...
+    ```
+    """
+
+    def __init__(self, authorised_mode: set, modes: tuple[str] | None = None,):
+        self.authorised_mode = authorised_mode
+        self.additional_services: list = []
+        """Контейнер для складывания зависимостей, которые потом разом прокидываются в параметры класса."""
+        self.modes: tuple | None = modes
         self.validate_parameter()
         self.validate_modes()
         self.validate_authorised_mode()
 
     def validate_parameter(self) -> None:
         if self.modes:
-            if not isinstance(self.modes, list):
+            if not isinstance(self.modes, tuple):
                 raise ValueError(
-                    f"Было передано {type(self.modes)}, когда ожидает список строк >> list[str] | None\n"
+                    f"Было передано {type(self.modes)}, когда ожидает кортеж строк >> tuple(str) | None\n"
                     "`mode` передаваемые поля, должны быть строкового типа.\n"
-                    'Пример: `Depends(lambda: *_service(["metrics", "user", ...]))`'
+                    'Пример: `Depends(lambda: *_service("metrics", "user", ...))`'
                 )
 
     def validate_modes(self) -> None:
@@ -41,14 +61,21 @@ class DependsFactory:
             if not all(isinstance(mode, str) for mode in self.modes):
                 raise ValueError(
                     "`mode` передаваемые поля, должны быть строкового типа.\n"
-                    'Пример: `Depends(lambda: *_service(["metrics", "user", ...]))`'
+                    'Пример: `Depends(lambda: *_service("metrics", "user", ...))`'
                 )
+            for mode in self.modes:
+                if mode not in self.authorised_mode:
+                    raise ValueError(
+                        f"mode >> {mode}, не объявлен в разрешенных значениях `authorised_mode`, если mode `{mode}` "
+                        f'является валидным флагом для фабрики зависимостей, просто объявите его в authorised_mode = {{"{mode}"}},'
+                        f"либо устраните опечатку флага или не валидный флаг {mode}"
+                    )
 
     def validate_authorised_mode(self) -> None:
         if not self.authorised_mode:
             raise ValueError(
                 f"Error {self.__class__.__name__}\n"
-                "`authorised_mode` должен быть кортеж с флагами значений.\n"
+                "`authorised_mode` должен быть множество с флагами значений.\n"
                 "Определите authorised_mode в классе потомке.\n"
                 "Пример:\n"
                 "class ContestFactory(DependsFactory):\n"
@@ -67,30 +94,44 @@ class DependsFactory:
     def get_service(self) -> Any:
         """
         Для опционального добавления N количество сервисов или репозиториев,
-        используйте паттерн декоратор через self.additional_services: list
+        используйте паттерн декоратор через self.additional_services: list.<br>
+        `self.additional_services` объявлен в наследуемом классе DependsFactory:
+        ```
+        def __init__(self, authorised_mode: set, modes: tuple[str] | None = None):
+            ...
+            self.additional_services: list = []
+            ...
+        ```
 
-        Пример:
+        Пример реализации:
 
         ```
-        def get_service(self) -> ContestsService:
-            contest_service = ContestsService(ContestRepository)
-            for mode in self.modes:
-                if mode == "metrics":
-                    self.additional_services.append(main_metrics_service)
-                if mode == "user":
-                    self.additional_services.append(main_metrics_service)
+        class ContestFactory(DependsFactory):
+            def __init__(self, modes: tuple):
+                self.authorised_mode = {"metrics", "user"}
+                super().__init__(self.authorised_mode, modes)
 
-            if self.additional_services:
-                contest_service = ContestsService(ContestRepository, *self.additional_services)
+            def get_service(self) -> ContestsService:
+                contest_service = ContestsService(ContestRepository)
+                for mode in self.modes:
+                    if mode == "metrics":
+                        self.additional_services.append(main_metrics_service)
+                    if mode == "user":
+                        self.additional_services.append(UserRepository)
 
-            return contest_service
+                if self.additional_services:
+                    contest_service = ContestsService(ContestRepository, *self.additional_services)
+
+                return contest_service
         ```
         """
         raise NotImplementedError(f"Вы обязаны реализовать метод get_service в классе наследнике {self.__class__.__name__}")
 
 
 class ContestFactory(DependsFactory):
-    authorised_mode = {"metrics"}
+    def __init__(self, modes: tuple):
+        self.authorised_mode = {"metrics", "user"}
+        super().__init__(self.authorised_mode, modes)
 
     def get_service(self) -> ContestsService:
         contest_service = ContestsService(ContestRepository)
@@ -100,6 +141,8 @@ class ContestFactory(DependsFactory):
         for mode in self.modes:
             if mode == "metrics":
                 self.additional_services.append(main_metrics_service)
+            if mode == "user":
+                self.additional_services.append(UserRepository)
 
         if self.additional_services:
             contest_service = ContestsService(ContestRepository, *self.additional_services)
@@ -107,10 +150,29 @@ class ContestFactory(DependsFactory):
         return contest_service
 
 
-def contest_service(modes: list[str] | None = None) -> ContestsService:
+def contest_service(*modes: str) -> ContestsService:
     """
+    Всегда объявлять как callable, даже без параметров.
+
+    Пример без параметров:
+    ```
+    async def create_contest(
+        ...,
+        contest_service: Annotated[ContestsService, Depends(lambda: _contest_service())],
+        ...,
+    ):
+    ```
+    Пример с параметрами:
+    ```
+    async def create_contest(
+        ...,
+        contest_service: Annotated[ContestsService, Depends(lambda: _contest_service("metrics", "users", ..., ...,))],
+        ...,
+    ):
+    ```
     Params:
     - "metrics" >> set service MainMetricsService
+    - "user" >> set service UserRepository
     """
 
     factory = ContestFactory(modes)
