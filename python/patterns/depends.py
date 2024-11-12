@@ -1,5 +1,6 @@
 from typing import Optional, Callable, Any
 from typing_extensions import Annotated, get_origin, get_args
+import inspect
 
 
 class InnerDepends:
@@ -24,17 +25,17 @@ def FabricDepends(dependency: Optional[Callable[..., Any]] = None) -> Any:
 
 def fabric_inject(func):
     def wrapper(*args, **kwargs):
-        # Тащим аннотации напрямую из __annotations__, чтобы сохранить информацию об Annotated
-        annotations: dict = func.__annotations__
-        for param, hint in annotations.items():
+        signature = inspect.signature(func)
+        for param_name, param in signature.parameters.items():
             # Без Annotated не продолжаем, нужно соблюдать соглашение по тому, как мы передаем значения для инъекции
-            if get_origin(hint) == Annotated:
+            if get_origin(param.annotation) == Annotated:
                 # Извлекаем метаданные из Annotated
-                dependency = get_args(hint)[1]
+                dependency = get_args(param.annotation)[1]
                 if isinstance(dependency, InnerDepends):
                     # Создаем экземпляр зависимости и просто передаем его в kwargs,
                     # поулчается что в параметр функции service передано value >> экземпляр класса Service
-                    kwargs[param] = dependency.dependency()
+                    if param_name not in kwargs:
+                        kwargs[param_name] = dependency.dependency()
         return func(*args, **kwargs)
     return wrapper
 
