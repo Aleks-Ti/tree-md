@@ -4,7 +4,7 @@ import inspect
 
 
 class InnerDepends:
-    def __init__(self, dependency: Optional[Callable[..., Any]] = None):
+    def __init__(self, dependency: Optional[Callable[..., Any]] = None) -> None:
         self.dependency = dependency
 
     def __repr__(self) -> str:
@@ -23,8 +23,8 @@ def FabricDepends(dependency: Optional[Callable[..., Any]] = None) -> Any:
     return InnerDepends(dependency=dependency)
 
 
-def fabric_inject(func):
-    def wrapper(*args, **kwargs):
+def fabric_inject(func) -> Callable[..., Any]:
+    def wrapper(*args, **kwargs) -> Any:
         signature = inspect.signature(func)
         for param_name, param in signature.parameters.items():
             # Без Annotated не продолжаем, нужно соблюдать соглашение по тому, как мы передаем значения для инъекции
@@ -41,16 +41,24 @@ def fabric_inject(func):
 
 
 class Service:
-    def hello(self):
+    def hello(self) -> None:
         print("hello, depends!")
 
 
-def service():
+def service() -> Service:
     return Service()
 
 
 @fabric_inject
-def main(service: Annotated[Service, FabricDepends(service)]):
+def main(service: Annotated[Service, FabricDepends(service)]) -> None:
+    """_summary_
+
+    Args:
+        service (Annotated[Service, FabricDepends): _description_
+
+    Returns:
+        _type_: _description_
+    """
     return service.hello()
 
 
