@@ -1,4 +1,4 @@
-# Линтер Ruff в найстройках проекта pyproject.toml
+# Линтер Ruff в настройках проекта pyproject.toml
 
 ```toml
 ...

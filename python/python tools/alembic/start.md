@@ -8,7 +8,7 @@
 alembic init --template async migrations
 ```
 
-- инциализировать синхронный `alembic` в проекте:
+- инициализировать синхронный `alembic` в проекте:
 
 ```bash
 alembic init migrations
