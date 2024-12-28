@@ -1,0 +1,64 @@
+[project]
+name = "tree-md"
+version = "0.1.0"
+description = "tree-md"
+requires-python = ">=3.12"
+readme = "README.md"
+dependencies = [
+    "ruff>=0.7.3",
+    "mypy>=1.13.0",
+]
+
+[tool.uv.sources]
+src = { workspace = true }
+scripts = { workspace = true }
+
+[tool.ruff]
+line-length = 135
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+target-version = "py312"
+select = ["E", "W", "F", "B", "I", "Q", "COM"]
+fixable = ["I", "W", "COM", "Q"]
+flake8-quotes.inline-quotes = "double"
+flake8-quotes.docstring-quotes = "double"
+ignore = ["D100", "B904"]
+exclude = [
+    "settings.py",
+    "manage.py",
+    "migrations",
+    "__init__.py",
+    ".cache",
+    "__pycache__",
+    "infra",
+    "nginx",
+    ".vscode",
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "env.py",
+    "versions",
+    "migrations",
+]
+
+[tool.ruff.per-file-ignores]
+"src/settings.py" = ["E501"]
+
+[tool.ruff.pydocstyle]
+convention = "google"

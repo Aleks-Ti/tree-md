@@ -29,9 +29,8 @@ bash$ crontab -e
 import logging
 import os
 import subprocess
-
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
 
 class NoEnvData(Exception):
@@ -63,7 +62,7 @@ def load_env_file(env_path):
     if not os.path.exists(env_path):
         raise FileNotFoundError(
             "Файл .env найден. Убедитесь что вы указали корректный путь до файла. "
-            'Ожидается абсолютный путь. path_to_env="correct/path/to/.env"'
+            'Ожидается абсолютный путь. path_to_env="correct/path/to/.env"',
         )
 
     keys = []
@@ -93,7 +92,7 @@ def create_dumps(path_dir_dumps: str) -> None:
     dump_name = f'dump_{datetime.now().strftime("%d-%m-%Y_%H-%M-%S")}.sql'
     dump_path = Path(path_dir_dumps) / dump_name
     runner_command(
-        ["docker", "exec", CONTAINER_NAME, "pg_dump", "-U", PG_USER, "-d", PG_DB, "f", dump_path]
+        ["docker", "exec", CONTAINER_NAME, "pg_dump", "-U", PG_USER, "-d", PG_DB, "f", dump_path],
     )
     logger.info(f"Успешно создан новый дамп: {dump_name}")
 
@@ -101,7 +100,7 @@ def create_dumps(path_dir_dumps: str) -> None:
 def control_count_dumps(path_dir_dumps: str, num_to_delete=5) -> None:
     files = sorted(
         Path(path_dir_dumps).glob("*.sql"),
-        key=lambda x: x.stat().st_ctime
+        key=lambda x: x.stat().st_birthtime,
     )
     if len(files) <= num_to_delete:
         return None
@@ -130,10 +129,10 @@ if __name__ == "__main__":
     PATH_TO_ENV = "/path/to/env/file/.env"
     load_env_file(PATH_TO_ENV)
 
-    CONTAINER_NAME = get_variable_env("YOUR_CONTAINER_NAME")  # Имя контейнера с Postgres
-    PG_USER = get_variable_env("YOUR_PG_USERNAME")            # Имя пользователя Postgres
-    PG_DB = get_variable_env("YOUR_PG_DB_NAME")               # Имя базы данных Postgres
-    DIR_DUMPS = get_variable_env("YOUR_DIR_DUMPS")            # Путь для хранения дампов
+    CONTAINER_NAME = get_variable_env("YOUR_CONTAINER_NAME")  # Имя контейнера с Postgres                                          135
+    PG_USER = get_variable_env("YOUR_PG_USERNAME")  # Имя пользователя Postgres
+    PG_DB = get_variable_env("YOUR_PG_DB_NAME")  # Имя базы данных Postgres
+    DIR_DUMPS = get_variable_env("YOUR_DIR_DUMPS")  # Путь для хранения дампов
 
     try:
         main()
