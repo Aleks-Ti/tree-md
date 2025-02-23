@@ -1,5 +1,6 @@
 from pairs import car, cdr, cons, is_pair, to_string
 
+
 def reverse_pair(pair):
     lef = cdr(pair)
     rig = car(pair)
@@ -23,7 +24,7 @@ def find_primitive_box(pair):
         return right_result
 
 
-pair = cons('one', 'two')
+pair = cons("one", "two")
 print(to_string(reverse_pair(pair)))  # ('two', 'one')
 
 
@@ -32,7 +33,7 @@ pair2 = cons(100, 0)
 print(to_string(sum_of_pairs(pair1, pair2)))
 
 
-pair = cons(None, cons('one', 'two'))
+pair = cons(None, cons("one", "two"))
 print(to_string(find_primitive_box(pair)))  # ('one', 'two')
 
 pair2 = cons(cons(None, cons(1, 5)), None)

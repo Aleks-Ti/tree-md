@@ -14,13 +14,17 @@ def cons(a, b):
             return a
         if message == "cdr":
             return b
+
     return f
+
 
 def car(pair):
     return pair("car")
 
+
 def cdr(pair):
     return pair("cdr")
+
 
 def is_pair(pair):
     return isinstance(pair, Pairs)

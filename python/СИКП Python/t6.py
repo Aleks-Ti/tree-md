@@ -1,4 +1,4 @@
-from rationals import make, to_string, is_equal, add,sub,mul,div
+from rationals import add, div, is_equal, make, mul, sub, to_string
 
 rat23 = make(2, 3)
 rat14 = make(1, 4)

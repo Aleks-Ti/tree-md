@@ -1,3 +1,4 @@
 .obsidian
 .venv
 .vscode
+__pycache__

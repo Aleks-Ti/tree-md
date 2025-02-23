@@ -1,5 +1,6 @@
+from pairs import car, cdr, cons
 from points import get_x, get_y
-from pairs import cons, car, cdr
+
 
 class Rectangles:
     def __init__(self):
@@ -47,7 +48,7 @@ def contains_the_origin(rectangle):
     if y_l_top_point < 0:
         return False
     if x_l_top_point < 0:
-        if y_l_top_point - h < 0 and  x_l_top_point + w > 0:
+        if y_l_top_point - h < 0 and x_l_top_point + w > 0:
             return True
         return False
     return False

@@ -1,5 +1,6 @@
-from points import make as make_point, to_string as point_to_string
 import segment
+from points import make as make_point
+from points import to_string as point_to_string
 
 # не важно, чем является current_segment с точки зрения реализации, главное, что с ним можно
 # работать используя функции для работы с отрезками
