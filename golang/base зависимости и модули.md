@@ -23,9 +23,9 @@ func main() {
 Чтобы превратить папку с кодом в Go-модуль, можно использовать команду go mod init:
 
 ```bash
-go mod init github.com/hexlet/hello-hexlet # Сразу указываем имя модуля
+go mod init github.com/hexlet/hello-hexlet  # Сразу указываем имя модуля
 
-go mod init github.com/hexlet/hello-hexlet                                             1 ↵
+go mod init github.com/hexlet/hello-hexlet
 go: creating new go.mod: module github.com/hexlet/hello-hexlet
 go: to add module requirements and sums:
         go mod tidy
