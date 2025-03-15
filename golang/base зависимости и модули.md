@@ -38,3 +38,17 @@ module github.com/hexlet/hello-hexlet
 
 go 1.23.0
 ```
+
+Команда go mod tidy проверяет импорты в коде, загружает недостающие зависимости и удаляет лишние. Файл go.mod обновился и теперь включает в себя раздел с зависимостями:
+
+```bash
+module github.com/hexlet/hello-hexlet
+
+go 1.23.0
+
+require github.com/sirupsen/logrus v1.9.3
+
+require golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
+```
+
+Также появился файл go.sum:
