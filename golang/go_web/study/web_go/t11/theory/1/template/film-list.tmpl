@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Список фильмов</h1>
+
+{{ range $film := . }}
+<div>
+    <h2>{{ $film.Title }}</h2>
+    <p>
+        {{ if $film.IsViewed }}
+        Просмотрено ✅
+        {{ else }}
+        Не просмотрено ❌
+        {{ end }}
+    </p>
+</div>
+{{ end }}
+
+</body>
+</html>

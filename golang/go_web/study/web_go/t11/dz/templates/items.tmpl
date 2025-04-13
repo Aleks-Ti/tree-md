@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Список Товаров</h1>
+
+{{ range $item := . }}
+<div>
+    <h2>{{ $item.Name }}</h2>
+    <p>Цена ${{ $item.Price }}</p>
+</div>
+{{ end }}
+
+</body>
+</html>
