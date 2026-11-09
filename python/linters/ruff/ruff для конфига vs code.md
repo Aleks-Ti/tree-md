@@ -1,3 +1,12 @@
+---
+tags:
+  - python
+  - lint
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # Конфиг для VS code
 
 На `ctrl + s` выполняет инструкцию ниже.
@@ -30,3 +39,10 @@
     ],
 }
 ```
+
+---
+
+## Связанное
+
+- [[ruff.toml]]
+- [[ruff inner pyproject.toml]]

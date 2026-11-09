@@ -1,3 +1,11 @@
+---
+tags:
+  - go
+up: "[[MOC Go]]"
+---
+
+> [!info] Раздел: [[MOC Go]]
+
 # Создание пакета
 
 Любой код в Go существует `внутри пакета` — это папка с go-файлами. Заголовки всех файлов в пакете начинаются `одинаково — package имя-пакета`. Даже если мы создаем программу из одного файла, она `все равно должна быть внутри пакета`.
@@ -142,3 +150,11 @@ https://github.com/golang-standards/project-layout/blob/master/README_ru.md#%D0%
 ### Заметка от Hexlet
 
 https://github.com/Hexlet/ru-instructions/blob/main/go.md
+
+---
+
+## Связанное
+
+- [[Go start]]
+- [[base зависимости и модули]]
+- [[модули в rust]]

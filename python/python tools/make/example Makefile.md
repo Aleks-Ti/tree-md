@@ -1,3 +1,13 @@
+---
+tags:
+  - python
+  - tools
+  - automation
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # Example Makefile
 
 ```makefile
@@ -49,3 +59,10 @@ stop_pdb:
 load_dump:
 	cat dumps/dump.sql | docker exec -i project_db psql -U podvig -d podvig
 ```
+
+---
+
+## Связанное
+
+- [[instal make]]
+- [[Taskfiles]]

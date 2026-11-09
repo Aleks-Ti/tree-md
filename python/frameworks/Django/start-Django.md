@@ -1,3 +1,12 @@
+---
+tags:
+  - python
+  - django
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # Первичные настройки Django
 
 ## Навигация
@@ -214,3 +223,12 @@ INSTALLED_APPS = [
     ]
 }
 ```
+
+---
+
+## Связанное
+
+- [[Alembic start]]
+- [[psql]]
+- [[base_poetry]]
+- [[base_uv]]

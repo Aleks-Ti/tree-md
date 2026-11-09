@@ -1,3 +1,12 @@
+---
+tags:
+  - python
+  - lint
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # Настройки Ruff для ruff.toml
 
 ```toml
@@ -73,3 +82,12 @@ inline-quotes = "single"  # будет отслеживать что в коде
 
 # ссылка на доку https://docs.astral.sh/ruff/rules/
 ```
+
+---
+
+## Связанное
+
+- [[ruff inner pyproject.toml]]
+- [[ruff для конфига vs code]]
+- [[Taskfiles]]
+- [[example Makefile]]

@@ -1,3 +1,13 @@
+---
+tags:
+  - python
+  - tools
+  - automation
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # Taskfile.md
 
 Taskfile это гошный бинарь, который мы ставим в систему и обращаемся к нему как cli инструменту. В целом тж самое что и Make, но проще, чище и лучше, и без боли make
@@ -298,3 +308,12 @@ task: Available tasks for this project:
 Все это лишь регламент.
 
 Вы можете привычным snake_case описывать таски, это ни на что не влияет.
+
+---
+
+## Связанное
+
+- [[instal make]]
+- [[example Makefile]]
+- [[YAML base]]
+- [[install direnv]]

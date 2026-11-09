@@ -1,3 +1,11 @@
+---
+tags:
+  - docker
+up: "[[MOC Инфраструктура]]"
+---
+
+> [!info] Раздел: [[MOC Инфраструктура]]
+
 # Базовые команды докер
 
 ## Навигация
@@ -27,3 +35,11 @@ docker push username/project_frontend
 docker push username/project_backend
 docker push username/project_gateway
 ```
+
+---
+
+## Связанное
+
+- [[Docker dump]]
+- [[docker_example_description]]
+- [[install_docker_on_android]]

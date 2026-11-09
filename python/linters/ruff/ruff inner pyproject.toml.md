@@ -1,3 +1,12 @@
+---
+tags:
+  - python
+  - lint
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # Линтер Ruff в настройках проекта pyproject.toml
 
 ```toml
@@ -50,3 +59,10 @@ convention = "google"
 
 ...
 ```
+
+---
+
+## Связанное
+
+- [[ruff.toml]]
+- [[ruff для конфига vs code]]

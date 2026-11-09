@@ -1,3 +1,12 @@
+---
+tags:
+  - linux
+  - network
+up: "[[MOC Linux]]"
+---
+
+> [!info] Раздел: [[MOC Linux]]
+
 # ss tool
 
 Хороший гайд по утилите - https://losst.pro/monitoring-setevyh-podklyuchenij-v-linux
@@ -43,3 +52,9 @@ ss -x
 ```bash
 ss -t -a
 ```
+
+---
+
+## Связанное
+
+- [[Порты, и действия с ними]]

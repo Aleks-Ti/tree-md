@@ -1,3 +1,13 @@
+---
+tags:
+  - web
+  - api
+  - rest
+up: "[[MOC Web и API]]"
+---
+
+> [!info] Раздел: [[MOC Web и API]]
+
 # Лучшие практики при разработки API
 
 API (Application programming interface) >> Программный интерфейс приложения.
@@ -126,3 +136,11 @@ oreder_id = order:q1we152431dsa56d431123211e516d5411d
 - Пустой ответ, может и должен быть 200. Пустой ответ не является ошибочный.
 
 - Атомарность
+
+---
+
+## Связанное
+
+- [[http protocol]]
+- [[example_CURL_requests]]
+- [[Криптография]]

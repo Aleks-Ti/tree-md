@@ -1,3 +1,12 @@
+---
+tags:
+  - python
+  - testing
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # CLI pytest
 
 ## Навигация
@@ -191,3 +200,11 @@ _________________________ test_correct __________________________
 - `pytest -s`;
 - `pytest -s -v`;
 - `pytest -rP`;
+
+---
+
+## Связанное
+
+- [[debug tests]]
+- [[example Makefile]]
+- [[Taskfiles]]

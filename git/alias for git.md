@@ -1,3 +1,11 @@
+---
+tags:
+  - git
+up: "[[MOC Инструменты]]"
+---
+
+> [!info] Раздел: [[MOC Инструменты]]
+
 # Git alias
 
 - В домашней директории как правило лежит конфиг, в `~/.gitconfig` там `nano .gitconfig`, добавляем конфиг:
@@ -15,3 +23,9 @@ type = cat-file -t
 dump = cat-file -p
 lg = log --graph --pretty --oneline -10
 ```
+
+---
+
+## Связанное
+
+- [[Git base]]

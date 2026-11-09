@@ -1,3 +1,13 @@
+---
+tags:
+  - web
+  - curl
+  - cheatsheet
+up: "[[MOC Web и API]]"
+---
+
+> [!info] Раздел: [[MOC Web и API]]
+
 # Curl
 
 Офф дока ```https://curl.se```
@@ -220,3 +230,11 @@ echo 'http://example.com/resource1' 'http://example.com/resource2' | xargs -n 1 
 ```
 
 Этот запрос запустит два параллельных запроса к разным ресурсам.
+
+---
+
+## Связанное
+
+- [[http protocol]]
+- [[example_best_practice]]
+- [[Криптография]]

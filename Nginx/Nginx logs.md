@@ -1,3 +1,12 @@
+---
+tags:
+  - nginx
+  - logs
+up: "[[MOC Инфраструктура]]"
+---
+
+> [!info] Раздел: [[MOC Инфраструктура]]
+
 # Nginx базовые понятия и команды
 
 https://nginx.org/ru/docs/
@@ -29,3 +38,11 @@ sudo tail /var/log/nginx/access.log
 # Дата/Время Уровень ошибки ID процесса Описание ошибки
 2023/07/24 07:18:21 [error] 719280#719280: *3315 connect() failed (111: Unknown error) while connecting to upstream, client: 1.2.3.4, server: 5.6.7.8, request: "GET / HTTP/1.1", upstream: "http://127.0.0.1:9000/", host: "taski.example.com", referrer: "https://taski.example.com"
 ```
+
+---
+
+## Связанное
+
+- [[Nginx base]]
+- [[журналы и чистка]]
+- [[http protocol]]

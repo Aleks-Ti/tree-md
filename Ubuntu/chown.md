@@ -1,3 +1,12 @@
+---
+tags:
+  - linux
+  - permissions
+up: "[[MOC Linux]]"
+---
+
+> [!info] Раздел: [[MOC Linux]]
+
 # Команда chown в Linux
 
 Команда chown используется для изменения владельца (user) и/или группы (group) файлов и папок.
@@ -175,3 +184,9 @@ ls -l file.txt
 Владелец: `alice`.
 Группа: `developers`.
 
+---
+
+## Связанное
+
+- [[chmod]]
+- [[nginx для статики с разделением прав доступа]]

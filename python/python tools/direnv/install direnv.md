@@ -1,3 +1,13 @@
+---
+tags:
+  - python
+  - tools
+  - env
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # Установка на Ubuntu/Windows
 
 ## Ubuntu
@@ -61,3 +71,11 @@ direnv allow
 ```bash
 direnv
 ```
+
+---
+
+## Связанное
+
+- [[Taskfiles]]
+- [[instal make]]
+- [[base_uv]]

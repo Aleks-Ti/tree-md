@@ -1,3 +1,13 @@
+---
+tags:
+  - python
+  - db
+  - migrations
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # Первичная настройка alembic
 
 ## Пулл команд
@@ -58,3 +68,11 @@ config.set_main_option("sqlalchemy.url", DATABASE_URL)
 ### END MY SETTINGS # noqa
 ...
 ```
+
+---
+
+## Связанное
+
+- [[psql]]
+- [[start-Django]]
+- [[docker_example_description]]

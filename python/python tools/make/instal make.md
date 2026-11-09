@@ -1,3 +1,13 @@
+---
+tags:
+  - python
+  - tools
+  - automation
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # Make
 
 Коротко.
@@ -33,3 +43,10 @@ Please run 'choco -?' or 'choco <command> -?' for help menu.
 ```bash
 choco install make
 ```
+
+---
+
+## Связанное
+
+- [[example Makefile]]
+- [[Taskfiles]]

@@ -1,3 +1,12 @@
+---
+tags:
+  - python
+  - testing
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # Отладка тестов через Python Debugger
 
 ```bash
@@ -67,3 +76,9 @@ def test_counter():
 - `a` (args) — напечатать аргументы текущей функции.
 - `l` (list) — вывести строки кода выполняемой программы.
 - `q` (quit) — выйти из режима отладки.
+
+---
+
+## Связанное
+
+- [[flags start test]]

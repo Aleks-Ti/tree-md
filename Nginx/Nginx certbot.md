@@ -1,3 +1,12 @@
+---
+tags:
+  - nginx
+  - tls
+up: "[[MOC Инфраструктура]]"
+---
+
+> [!info] Раздел: [[MOC Инфраструктура]]
+
 # SertBot
 
 ## Навигация
@@ -52,3 +61,11 @@ ssl_stapling_verify on;
 resolver 1.1.1.1 8.8.8.8 valid=300s;
 resolver_timeout 5s;
 ```
+
+---
+
+## Связанное
+
+- [[Nginx http2]]
+- [[Nginx base]]
+- [[Криптография]]

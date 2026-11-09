@@ -1,3 +1,12 @@
+---
+tags:
+  - python
+  - stdlib
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # PathLib
 
 ## Чтение и запись файлов
@@ -126,3 +135,9 @@ print(absolute_path)
 # or 
 relative_path = Path('example.txt').resolve()
 ```
+
+---
+
+## Связанное
+
+- [[practice_bash_sript_create_dump]]

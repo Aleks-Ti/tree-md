@@ -1,3 +1,12 @@
+---
+tags:
+  - docker
+  - cheatsheet
+up: "[[MOC Инфраструктура]]"
+---
+
+> [!info] Раздел: [[MOC Инфраструктура]]
+
 # Свалка команд и заметок
 
 ## Навигация
@@ -241,3 +250,12 @@ docker run --env-file .env \
            --name kitty_backend_container \
            -p 8080:8080 kitty_backend
 ```
+
+---
+
+## Связанное
+
+- [[base_commands]]
+- [[docker_example_description]]
+- [[YAML base]]
+- [[psql]]

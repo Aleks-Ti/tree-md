@@ -1,3 +1,12 @@
+---
+tags:
+  - sql
+  - postgres
+up: "[[MOC Базы данных]]"
+---
+
+> [!info] Раздел: [[MOC Базы данных]]
+
 # Работа в терминале linux системы c postgres
 
 В образе PostgreSQL есть консольный клиент psql, который позволяет отправлять SQL-запросы к базе данных из командной строки.
@@ -42,3 +51,12 @@ docker exec -it db psql -U django_user -d django
 ### Удалить Docker volume pg_data
 
 ```docker volume rm pg_data```
+
+---
+
+## Связанное
+
+- [[сдвиг сиквенс во всей БД]]
+- [[docker_example_description]]
+- [[Docker dump]]
+- [[practice_bash_sript_create_dump]]

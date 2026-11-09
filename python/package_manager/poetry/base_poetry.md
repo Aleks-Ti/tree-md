@@ -1,3 +1,12 @@
+---
+tags:
+  - python
+  - packaging
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # Poetry
 
 Методичка по использованию и установки poetry для операционной системы windows 10
@@ -199,3 +208,10 @@ poetry publish
 ```bash
 https://python-poetry.org/docs/#installing-with-the-official-installer
 ```
+
+---
+
+## Связанное
+
+- [[base_uv]]
+- [[poetry-whl]]

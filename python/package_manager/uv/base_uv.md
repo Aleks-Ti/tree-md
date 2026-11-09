@@ -1,3 +1,12 @@
+---
+tags:
+  - python
+  - packaging
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # UV
 
 ## Навигация
@@ -173,3 +182,11 @@ exclude = [
 [tool.ruff.pydocstyle]
 convention = "google"
 ```
+
+---
+
+## Связанное
+
+- [[base_poetry]]
+- [[poetry-whl]]
+- [[install direnv]]

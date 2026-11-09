@@ -1,3 +1,12 @@
+---
+tags:
+  - docker
+  - compose
+up: "[[MOC Инфраструктура]]"
+---
+
+> [!info] Раздел: [[MOC Инфраструктура]]
+
 # Работа с backend проекта
 
 Примечание.
@@ -139,3 +148,13 @@ docker compose -f docker-compose.local.yml exec backend python manage.py collect
 
 ***
 ...
+
+---
+
+## Связанное
+
+- [[base_commands]]
+- [[Docker dump]]
+- [[YAML base]]
+- [[psql]]
+- [[Alembic start]]

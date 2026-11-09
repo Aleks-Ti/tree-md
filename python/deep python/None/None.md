@@ -1,3 +1,12 @@
+---
+tags:
+  - python
+  - internals
+up: "[[MOC Python]]"
+---
+
+> [!info] Раздел: [[MOC Python]]
+
 # None
 
 ```bash
@@ -87,3 +96,10 @@ accepts_list([4, 5, 7])
 # [1, 2, 3]
 # [4, 5, 7]
 ```
+
+---
+
+## Связанное
+
+- [[bool]]
+- [[ast_expression]]
