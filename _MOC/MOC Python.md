@@ -12,7 +12,7 @@ up: "[[Home]]"
 ## Окружение и пакеты
 
 - [[base_uv]] · [[base_poetry]] · [[poetry-whl]]
-- [[install direnv]]
+- [[install direnv]] · [[Переменные окружения и секреты]]
 
 ## Автоматизация
 

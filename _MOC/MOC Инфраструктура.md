@@ -23,6 +23,7 @@ up: "[[Home]]"
 - [[base_commands]] — базовые команды
 - [[docker_example_description]] — работа с backend-проектом в compose
 - [[Docker compose]] — compose: dev и prod
+- [[Docker compose шаблон Postgres и приложение]] — заготовка нового проекта
 - [[Docker установка на сервер]]
 - [[Docker сборка и запуск контейнеров]]
 - [[Docker dump]] — индекс бывшей свалки

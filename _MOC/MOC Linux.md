@@ -21,6 +21,7 @@ Ubuntu, права доступа, сеть, ОС изнутри, виртуал
 | [[журналы и чистка]] | логи, кэш APT |
 | [[systemd]] | службы, journalctl, свой unit |
 | [[ssh]] | ключи, туннели, config |
+| [[Переменные окружения и секреты]] | .env, direnv, compose, секреты |
 | [[fish_terminal]] | оболочка fish |
 | [[nano_upgrade]] | настройка nano |
 
