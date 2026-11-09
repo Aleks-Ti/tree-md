@@ -25,7 +25,7 @@ up: "[[Home]]"
 
 ## Фреймворки и БД
 
-- [[start-Django]] · [[empty|FastAPI (заготовка)]] · [[Alembic start]]
+- [[start-Django]] · [[FastAPI start]] · [[Alembic start]]
 
 ## Внутренности
 
